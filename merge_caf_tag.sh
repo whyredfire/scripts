@@ -9,7 +9,7 @@ echo -e ""
 # qcald-3.0
 echo -e "Merging qcald-3.0"
 git remote add qcald-3.0 https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/wlan/qcacld-3.0
-git fetch qcacld-3.0 $TAG
+git fetch qcald-3.0 $TAG
 git merge -X subtree=drivers/staging/qcacld-3.0 FETCH_HEAD
 
 echo -e ""
