@@ -198,6 +198,7 @@ echo -e "\nSetting up Git..."
 
 git config --global user.email "whyredfire@gmail.com"
 git config --global user.name "Karan Parashar"
+git config --global review.gerrit.pixelexperience.org.username "whyredfire"
 
 git config --global alias.cp 'cherry-pick'
 git config --global alias.c 'commit'
