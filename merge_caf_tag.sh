@@ -27,3 +27,9 @@ echo -e "Merging qca-wifi-host-cmn"
 git remote add qca-wifi-host-cmn https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn
 git fetch qca-wifi-host-cmn $TAG
 git merge -X subtree=drivers/staging/qca-wifi-host-cmn FETCH_HEAD
+
+# techpack
+echo -e "Merging techpack"
+git remote add teckpack https://git.codelinaro.org/clo/la/platform/vendor/opensource/audio-kernel
+git fetch techpack $TAG
+git merge -X subtree=techpack/audio FETCH_HEAD
