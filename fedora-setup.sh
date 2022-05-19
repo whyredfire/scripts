@@ -71,6 +71,12 @@ sudo install repo /usr/local/bin/repo
 rm repo
 echo -e "Done."
 
+echo -e "\nInstalling git-cli..."
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install gh
+echo -e "Done."
+
 echo -e "\nInstalling Android SDK platform tools..."
 wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 unzip -qq platform-tools-latest-linux.zip
