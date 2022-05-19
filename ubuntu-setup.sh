@@ -36,6 +36,13 @@ sudo install repo /usr/local/bin/repo
 rm repo
 echo -e "Done."
 
+echo -e "\nInstalling gh-cli..."
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
+echo -e "Done."
+
 echo -e "\nInstalling Android SDK platform tools..."
 wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 unzip -qq platform-tools-latest-linux.zip
