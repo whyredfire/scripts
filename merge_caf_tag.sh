@@ -6,7 +6,7 @@ read TAG
 
 echo -e ""
 
-# qcald-3.0
+# qcacld-3.0
 echo -e "Merging qcacld-3.0"
 git remote add qcacld-3.0 https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/wlan/qcacld-3.0
 git fetch qcacld-3.0 $TAG
@@ -30,6 +30,6 @@ git merge -X subtree=drivers/staging/qca-wifi-host-cmn FETCH_HEAD --log
 
 # techpack
 echo -e "Merging techpack"
-git remote add teckpack https://git.codelinaro.org/clo/la/platform/vendor/opensource/audio-kernel
+git remote add techpack https://git.codelinaro.org/clo/la/platform/vendor/opensource/audio-kernel
 git fetch techpack $TAG
 git merge -X subtree=techpack/audio FETCH_HEAD --log
