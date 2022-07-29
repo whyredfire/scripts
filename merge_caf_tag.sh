@@ -1,8 +1,16 @@
-# Script for merging caf tag
-# Copyright (C) 2021-22 Karan Parashar.
+#!/bin/bash
+#
+# Simple bash script to merge CLO tags to kernel
+#
+# Usage:
+#       ./merge_caf_tag.sh $TAG
+#
 
-echo "Paste the desirable caf tag"
-read TAG
+TAG=$1
+
+if [ -z ${TAG+x} ]; then
+    echo "Pass a valid argument"
+fi
 
 # qcacld-3.0
 function merge_qcacld() {
