@@ -15,7 +15,7 @@ function merge_qcacld() {
     git fetch qcacld-3.0 $TAG
 
     if ! git merge -X subtree=drivers/staging/qcacld-3.0 FETCH_HEAD --log; then
-        echo "Merge failed!"
+        echo "Merge failed!" && exit 1
     else
         echo "Merged qcacld-3.0 tag sucessfully!"
     fi
@@ -32,7 +32,7 @@ function merge_fw_api() {
     git fetch fw-api $TAG
 
     if ! git merge -X subtree=drivers/staging/fw-api FETCH_HEAD --log; then
-        echo "Merge failed!"
+        echo "Merge failed!" && exit 1
     else
         echo "Merged fw-api tag sucessfully!"
     fi
@@ -49,7 +49,7 @@ function merge_qca_wifi_host_cmn() {
     git fetch qca-wifi-host-cmn $TAG
 
     if ! git merge -X subtree=drivers/staging/qca-wifi-host-cmn FETCH_HEAD --log; then
-        echo "Merge failed!"
+        echo "Merge failed!" && exit 1
     else
         echo "Merged qca-wifi-host-cmn tag sucessfully!"
     fi
@@ -66,7 +66,7 @@ function merge_techpack() {
     git fetch techpack $TAG
 
     if ! git merge -X subtree=techpack/audio FETCH_HEAD --log; then
-        echo "Merge failed!"
+        echo "Merge failed!" && exit 1
     else
         echo "Merged techpack tag sucessfully!"
     fi
