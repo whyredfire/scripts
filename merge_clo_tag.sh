@@ -3,7 +3,7 @@
 # Simple bash script to merge CLO tags to kernel
 #
 # Usage:
-#       ./merge_caf_tag.sh $TAG
+#       ./merge_clo_tag.sh $TAG
 #
 
 TAG=$1
