@@ -12,6 +12,11 @@ if [ -z ${TAG+x} ]; then
     echo "Pass a valid argument"
 fi
 
+if [[ $2 = "-i" || $2 = "--initial" ]]; then
+    INITIAL_MERGE=true
+    echo "Initial merge"
+fi
+
 # qcacld-3.0
 function merge_qcacld() {
     echo "Merging qcacld-3.0"
@@ -22,10 +27,17 @@ function merge_qcacld() {
 
     git fetch qcacld-3.0 $TAG
 
-    if ! git merge -X subtree=drivers/staging/qcacld-3.0 FETCH_HEAD --log; then
-        echo "Merge failed!" && exit 1
+    if [[ ${INITIAL_MERGE} = true ]]; then
+        git merge -s ours --no-commit --allow-unrelated-histories FETCH_HEAD
+        git read-tree --prefix=drivers/staging/qcacld-3.0 -u FETCH_HEAD
+        git commit -m "qcacld-3.0: Merge tag '$TAG'"
+        echo "Merged qcacld-3.0 tag succesfully!"
     else
-        echo "Merged qcacld-3.0 tag sucessfully!"
+        if ! git merge -X subtree=drivers/staging/qcacld-3.0 FETCH_HEAD --log; then
+            echo "Merge failed!" && exit 1
+        else
+            echo "Merged qcacld-3.0 tag sucessfully!"
+        fi
     fi
 }
 
@@ -39,10 +51,17 @@ function merge_fw_api() {
 
     git fetch fw-api $TAG
 
-    if ! git merge -X subtree=drivers/staging/fw-api FETCH_HEAD --log; then
-        echo "Merge failed!" && exit 1
+    if [[ ${INITIAL_MERGE} = true ]]; then
+        git merge -s ours --no-commit --allow-unrelated-histories FETCH_HEAD
+        git read-tree --prefix=drivers/staging/fw-api -u FETCH_HEAD
+        git commit -m "fw-api: Merge tag '$TAG'"
+    echo "Merged fw-api tag succesfully!"
     else
-        echo "Merged fw-api tag sucessfully!"
+        if ! git merge -X subtree=drivers/staging/fw-api FETCH_HEAD --log; then
+            echo "Merge failed!" && exit 1
+        else
+            echo "Merged fw-api tag sucessfully!"
+        fi
     fi
 }
 
@@ -56,10 +75,17 @@ function merge_qca_wifi_host_cmn() {
 
     git fetch qca-wifi-host-cmn $TAG
 
-    if ! git merge -X subtree=drivers/staging/qca-wifi-host-cmn FETCH_HEAD --log; then
-        echo "Merge failed!" && exit 1
+    if [[ ${INITIAL_MERGE} = true ]]; then
+        git merge -s ours --no-commit --allow-unrelated-histories FETCH_HEAD
+        git read-tree --prefix=drivers/staging/qca-wifi-host-cmn -u FETCH_HEAD
+        git commit -m "qca-wifi-host-cmn: Merge tag '$TAG'"
+    echo "Merged qca-wifi-host-cmn tag succesfully!"
     else
-        echo "Merged qca-wifi-host-cmn tag sucessfully!"
+        if ! git merge -X subtree=drivers/staging/qca-wifi-host-cmn FETCH_HEAD --log; then
+            echo "Merge failed!" && exit 1
+        else
+            echo "Merged qca-wifi-host-cmn tag sucessfully!"
+        fi
     fi
 }
 
@@ -73,10 +99,17 @@ function merge_techpack() {
 
     git fetch techpack $TAG
 
-    if ! git merge -X subtree=techpack/audio FETCH_HEAD --log; then
-        echo "Merge failed!" && exit 1
+    if [[ ${INITIAL_MERGE} = true ]]; then
+        git merge -s ours --no-commit --allow-unrelated-histories FETCH_HEAD
+        git read-tree --prefix=techpack/audio -u FETCH_HEAD
+        git commit -m "techpack: Merge tag '$TAG'"
+        echo "Merged techpack tag succesfully!"
     else
-        echo "Merged techpack tag sucessfully!"
+        if ! git merge -X subtree=techpack/audio FETCH_HEAD --log; then
+            echo "Merge failed!" && exit 1
+        else
+            echo "Merged techpack tag sucessfully!"
+        fi
     fi
 }
 
