@@ -51,13 +51,13 @@ echo -e "\nInstalling gnome-extensions..."
 gnome_extensions
 
 # Multimedia plugins
-echo -e "/nInstalling multimedia plugins..."
+echo -e "\nInstalling multimedia plugins..."
 sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
 sudo dnf install lame\* --exclude=lame-devel
 sudo dnf group upgrade --with-optional Multimedia
 
 # vscode
-echo -e "/nInstalling Visual Studio Code..."
+echo -e "\nInstalling Visual Studio Code..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 cat <<EOF | sudo tee /etc/yum.repos.d/vscode.repo
 [code]
@@ -245,6 +245,7 @@ read -p "Would you like to install xanmod kernel? [y/n]" choice
 if [[ $choice == *"y"* ]]; then
     echo -e "\nInstalling xanmod kernel..."
     xanmod
+    echo -e "Reboot your system to perform changes"
 elif
     [[ $choice == *"n"* ]]; then
     echo -e "\nExiting"
