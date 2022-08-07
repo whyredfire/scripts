@@ -24,6 +24,7 @@ sudo dnf install -y -qq \
     discord \
     gnome-extensions-app.x86_64 \
     gnome-tweaks \
+    htop \
     neofetch \
     nload \
     pavucontrol
