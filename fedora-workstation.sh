@@ -14,6 +14,9 @@ sudo dnf install \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+# Add flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 # Install packages
 echo -e "Installing and updating dnf packages ...\n"
 sudo dnf install -y -qq \
@@ -228,3 +231,23 @@ git config --global alias.rs 'reset'
 git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
 echo "Done."
+
+# xanmod kernel
+function xanmod(){
+sudo dnf upgrade --refresh -y
+sudo dnf copr enable rmnscnce/kernel-xanmod -y
+sudo dnf install kernel-xanmod-edge -y
+}
+
+read -p "Would you like to install xanmod kernel? [y/n]" choice
+
+if [[ $choice == *"y"* ]]; then
+    echo -e "\nInstalling xanmod kernel..."
+    xanmod
+elif
+    [[ $choice == *"n"* ]]; then
+    echo -e "\nExiting"
+    exit
+else
+    echo "Wrong choice selected!"
+fi
