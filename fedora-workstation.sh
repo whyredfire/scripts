@@ -106,19 +106,20 @@ sh_rc=".bashrc"
 fi
 
 cat <<'EOF' >> $sh_rc
-# Upload a file to transfer.sh
-transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
-tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; echo; }
 # Super-fast repo sync
 repofastsync() { time schedtool -B -e ionice -n 0 `which repo` sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle -j$(nproc --all) "$@"; }
+
 # List lib dependencies of any lib/bin
 list_blob_deps() { readelf -d $1 | grep "\(NEEDED\)" | sed -r "s/.*\[(.*)\]/\1/"; }
+
 export TZ='Asia/Kolkata'
 export USE_CCACHE=1
 export CCACHE_EXEC=/usr/bin/ccache
+
 function msg() {
   echo -e "\e[1;32m$1\e[0m"
 }
+
 function helptree() {
   if [[ -z $1 && -z $2 ]]; then
     msg "Usage: helptree <tag> <add/pull>"
@@ -187,6 +188,7 @@ function helptree() {
     fi
   fi
 }
+
 function addtree() {
   if [[ -z $1 ]]; then
     msg "Usage: addtree <tag> [optional: spec]"
@@ -194,6 +196,7 @@ function addtree() {
   fi
   helptree $1 add $2
 }
+
 function updatetree() {
   if [[ -z $1 ]]; then
     msg "Usage: updatetree <tag> [optional: spec]"
@@ -201,6 +204,7 @@ function updatetree() {
   fi
   helptree $1 pull $2
 }
+
 EOF
 
 # Add android sdk to path
