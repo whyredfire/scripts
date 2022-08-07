@@ -22,10 +22,11 @@ echo -e "Installing and updating dnf packages ...\n"
 sudo dnf install -y -qq \
     android-tools \
     discord \
+    gnome-extensions-app.x86_64 \
     gnome-tweaks \
     neofetch \
     nload \
-    java-1.8.0-openjdk-devel
+    pavucontrol
 
 function gnome_extensions(){
 array=( https://extensions.gnome.org/extension/3193/blur-my-shell/
