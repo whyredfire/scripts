@@ -98,6 +98,11 @@ mkdir -p bin
 wget -q https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.6.0.jar -O bin/apktool.jar
 echo 'alias apktool="java -jar $HOME/bin/apktool.jar"' >> .bashrc
 
+wget -q https://github.com/skylot/jadx/releases/download/v1.4.4/jadx-1.4.4.zip
+unzip -qq jadx-1.4.4.zip -d jadx
+rm jadx-1.4.4.zip
+echo 'export PATH="$HOME/jadx/bin:$PATH"' >> .bashrc
+echo -e "Done."
 
 echo -e "\nSetting up shell environment..."
 if [[ $SHELL = *zsh* ]]; then
