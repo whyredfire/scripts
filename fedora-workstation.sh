@@ -25,6 +25,7 @@ sudo dnf install -y -qq \
     gnome-extensions-app.x86_64 \
     gnome-tweaks \
     htop \
+    imwheel \
     neofetch \
     nload \
     pavucontrol
