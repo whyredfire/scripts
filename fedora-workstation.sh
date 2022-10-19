@@ -31,9 +31,7 @@ sudo dnf install -y -qq \
     pavucontrol
 
 function gnome_extensions(){
-array=( https://extensions.gnome.org/extension/3193/blur-my-shell/
-https://extensions.gnome.org/extension/4422/gnome-clipboard/
-https://extensions.gnome.org/extension/8/places-status-indicator/
+array=(https://extensions.gnome.org/extension/4422/gnome-clipboard/
 https://extensions.gnome.org/extension/19/user-themes/ )
 
 for i in "${array[@]}"
