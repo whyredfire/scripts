@@ -10,7 +10,7 @@ cd $HOME
 
 # Enable RPM Fusion
 echo -e "Enabling RPM Fusion\n"
-sudo dnf install \
+sudo dnf install -y \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
@@ -19,7 +19,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 # Install packages
 echo -e "Installing and updating dnf packages ...\n"
-sudo dnf install -y -qq \
+sudo dnf install -y \
     android-tools \
     discord \
     gnome-extensions-app.x86_64 \
@@ -58,9 +58,9 @@ sudo udevadm control --reload-rules
 
 # Multimedia plugins
 echo -e "\nInstalling multimedia plugins..."
-sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
-sudo dnf install lame\* --exclude=lame-devel
-sudo dnf group upgrade --with-optional Multimedia
+sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+sudo dnf install -y lame\* --exclude=lame-devel
+sudo dnf group upgrade -y --with-optional Multimedia
 
 # vscode
 echo -e "\nInstalling Visual Studio Code..."
@@ -74,7 +74,7 @@ gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 sudo dnf check-update
-sudo dnf install code
+sudo dnf install -y code
 
 # pfetch
 echo -e "\nInstalling pfetch..."
@@ -87,7 +87,7 @@ rm -rf pfetch
 echo -e "\nInstalling git-cli..."
 sudo dnf install 'dnf-command(config-manager)'
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install gh
+sudo dnf install -y gh
 echo -e "Done."
 
 # Platform tools
