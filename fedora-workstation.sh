@@ -137,3 +137,6 @@ echo "Done."
 # gnome shell presets
 echo -e "\nSetting gnome shell presets..."
 gsettings set org.gnome.desktop.interface show-battery-percentage true
+
+# Disable CPU Boosting (for AMD CPUs)
+echo "0" | sudo tee /sys/devices/system/cpu/cpufreq/boost
