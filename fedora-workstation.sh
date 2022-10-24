@@ -133,3 +133,7 @@ git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
 git config --global core.editor "nano"
 echo "Done."
+
+# gnome shell presets
+echo -e "\nSetting gnome shell presets..."
+gsettings set org.gnome.desktop.interface show-battery-percentage true
