@@ -62,6 +62,12 @@ sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-o
 sudo dnf install -y lame\* --exclude=lame-devel
 sudo dnf group upgrade -y --with-optional Multimedia
 
+# oh-my-bash
+echo -e "\nSetup oh-my-bash..."
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+echo "#oh-my-bash" >> ~/.bashrc
+echo DISABLE_AUTO_UPDATE=true >> ~/.bashrc
+
 # vscode
 echo -e "\nInstalling Visual Studio Code..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
