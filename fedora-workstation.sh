@@ -28,7 +28,8 @@ sudo dnf install -y \
     imwheel \
     neofetch \
     nload \
-    pavucontrol
+    pavucontrol \
+    powertop
 
 function gnome_extensions(){
 array=(https://extensions.gnome.org/extension/4422/gnome-clipboard/
