@@ -147,5 +147,9 @@ gsettings set org.gnome.shell.extensions.pop-shell tile-by-default true
 gsettings set org.gnome.shell.extensions.pop-shell gap-outer 1
 gsettings set org.gnome.shell.extensions.pop-shell gap-inner 1
 
+
+# Optimize boot time, it takes the longest time while booting
+sudo systemctl disable NetworkManager-wait-online.service
+
 # Disable CPU Boosting (for AMD CPUs)
 echo "0" | sudo tee /sys/devices/system/cpu/cpufreq/boost
