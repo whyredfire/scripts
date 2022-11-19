@@ -106,6 +106,7 @@ sudo gpasswd -a $(whoami) adbusers
 sudo udevadm control --reload-rules
 sudo systemctl restart systemd-udevd.service
 adb kill-server
+rm -rf android-udev-rules
 echo -e "Done."
 
 # Configure git
@@ -135,7 +136,6 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize
 gsettings set org.gnome.shell.extensions.pop-shell tile-by-default true
 gsettings set org.gnome.shell.extensions.pop-shell gap-outer 1
 gsettings set org.gnome.shell.extensions.pop-shell gap-inner 1
-
 
 # Optimize boot time, it takes the longest time while booting
 sudo systemctl disable NetworkManager-wait-online.service
