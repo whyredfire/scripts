@@ -52,12 +52,6 @@ done
 echo -e "\nInstalling gnome-extensions..."
 gnome_extensions
 
-echo -e "\nSetting up udev rules for ADB..."
-sudo curl --create-dirs -L -o /etc/udev/rules.d/51-android.rules -O -L https://raw.githubusercontent.com/M0Rf30/android-udev-rules/master/51-android.rules
-sudo chmod 644 /etc/udev/rules.d/51-android.rules
-sudo chown root /etc/udev/rules.d/51-android.rules
-sudo udevadm control --reload-rules
-
 # Multimedia plugins
 echo -e "\nInstalling multimedia plugins..."
 sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
