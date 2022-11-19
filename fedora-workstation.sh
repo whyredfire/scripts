@@ -30,7 +30,8 @@ sudo dnf install -y \
     neofetch \
     nload \
     pavucontrol \
-    powertop
+    powertop \
+    tldr
 
 function gnome_extensions(){
 array=(https://extensions.gnome.org/extension/4422/gnome-clipboard/
