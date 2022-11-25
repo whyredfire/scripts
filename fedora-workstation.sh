@@ -35,7 +35,9 @@ sudo dnf install -y \
 
 function gnome_extensions(){
 array=(https://extensions.gnome.org/extension/779/clipboard-indicator/
-https://extensions.gnome.org/extension/19/user-themes/ )
+https://extensions.gnome.org/extension/19/user-themes/
+https://extensions.gnome.org/extension/1460/vitals/
+)
 
 for i in "${array[@]}"
 do
