@@ -50,8 +50,6 @@ do
     rm ${EXTENSION_ID}.zip
 done
 }
-echo -e "\nInstalling gnome-extensions..."
-gnome_extensions
 
 # Multimedia plugins
 echo -e "\nInstalling multimedia plugins..."
@@ -142,6 +140,9 @@ sudo systemctl disable NetworkManager-wait-online.service
 
 # Disable CPU Boosting (for AMD CPUs)
 echo "0" | sudo tee /sys/devices/system/cpu/cpufreq/boost
+
+echo -e "\nInstalling gnome-extensions..."
+gnome_extensions
 
 # oh-my-bash
 echo -e "\nSetup oh-my-bash..."
