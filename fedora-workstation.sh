@@ -128,6 +128,7 @@ echo "Done."
 
 # gnome shell presets
 echo -e "\nSetting gnome shell presets..."
+gsettings set org.gnome.shell disable-user-extensions false
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
