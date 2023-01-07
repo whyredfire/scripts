@@ -31,6 +31,7 @@ sudo dnf install -y \
     nload \
     pavucontrol \
     powertop \
+    telegram-desktop \
     tldr
 
 function gnome_extensions(){
