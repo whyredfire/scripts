@@ -79,6 +79,15 @@ sudo dnf check-update
 sudo dnf install -y code
 sudo yum-config-manager --disable code
 
+# Caffeine
+echo -e "\nInstalling Caffeine extension..."
+https://github.com/eonpatapon/gnome-shell-extension-caffeine
+cd gnome-shell-extension-caffeine
+make build
+make install
+cd ../..
+rm -rf gnome-shell-extension-caffeine
+
 # pfetch
 echo -e "\nInstalling pfetch..."
 git clone https://github.com/dylanaraps/pfetch.git
