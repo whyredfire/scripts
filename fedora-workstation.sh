@@ -100,14 +100,12 @@ echo -e "\nInstalling git-cli..."
 sudo dnf install 'dnf-command(config-manager)'
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo dnf install -y gh
-echo -e "Done."
 
 # Platform tools
 echo -e "\nInstalling Android SDK platform tools..."
 wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 unzip -qq platform-tools-latest-linux.zip
 rm platform-tools-latest-linux.zip
-echo -e "Done."
 
 echo -e "\nSetting up android udev rules..."
 git clone https://github.com/M0Rf30/android-udev-rules.git /tmp/android-udev-rules && cd /tmp/android-udev-rules
@@ -120,7 +118,6 @@ sudo udevadm control --reload-rules
 sudo systemctl restart systemd-udevd.service
 adb kill-server
 rm -rf /tmp/android-udev-rules
-echo -e "Done."
 
 # Configure git
 echo -e "\nSetting up Git..."
@@ -137,7 +134,6 @@ git config --global alias.rs 'reset'
 git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
 git config --global core.editor "nano"
-echo "Done."
 
 # gnome shell presets
 echo -e "\nSetting gnome shell presets..."
