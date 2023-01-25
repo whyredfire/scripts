@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/sudo bash
 #
 # Script to setup Fedora 37 Workstation
 #
@@ -10,7 +10,7 @@ cd $HOME
 
 # Enable RPM Fusion
 echo -e "Enabling RPM Fusion\n"
-sudo dnf install -y \
+dnf install -y \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
@@ -19,7 +19,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 # Install packages
 echo -e "Installing and updating dnf packages ...\n"
-sudo dnf install -y \
+dnf install -y \
     android-tools \
     discord \
     gnome-extensions-app.x86_64 \
@@ -35,8 +35,8 @@ sudo dnf install -y \
 
 echo -e "\nInstalling battop..."
 wget https://github.com/svartalf/rust-battop/releases/download/v0.2.4/battop-v0.2.4-x86_64-unknown-linux-gnu -O battop
-sudo mv battop /usr/bin/
-sudo chmod +x /usr/bin/battop
+mv battop /usr/bin/
+chmod +x /usr/bin/battop
 
 function gnome_extensions(){
 array=(https://extensions.gnome.org/extension/779/clipboard-indicator/
@@ -60,14 +60,14 @@ done
 
 # Multimedia plugins
 echo -e "\nInstalling multimedia plugins..."
-sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
-sudo dnf install -y lame\* --exclude=lame-devel
-sudo dnf group upgrade -y --with-optional Multimedia
+dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+dnf install -y lame\* --exclude=lame-devel
+dnf group upgrade -y --with-optional Multimedia
 
 # vscode
 echo -e "\nInstalling Visual Studio Code..."
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-cat <<EOF | sudo tee /etc/yum.repos.d/vscode.repo
+rpm --import https://packages.microsoft.com/keys/microsoft.asc
+cat <<EOF | tee /etc/yum.repos.d/vscode.repo
 [code]
 name=Visual Studio Code
 baseurl=https://packages.microsoft.com/yumrepos/vscode
@@ -75,9 +75,9 @@ enabled=1
 gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
-sudo dnf check-update
-sudo dnf install -y code
-sudo yum-config-manager --disable code
+dnf check-update
+dnf install -y code
+yum-config-manager --disable code
 
 # Caffeine
 echo -e "\nInstalling Caffeine extension..."
@@ -91,15 +91,15 @@ rm -rf gnome-shell-extension-caffeine
 # pfetch
 echo -e "\nInstalling pfetch..."
 git clone https://github.com/dylanaraps/pfetch.git
-sudo install pfetch/pfetch /usr/local/bin/
+install pfetch/pfetch /usr/local/bin/
 ls -l /usr/local/bin/pfetch
 rm -rf pfetch
 
 # git-cli
 echo -e "\nInstalling git-cli..."
-sudo dnf install 'dnf-command(config-manager)'
-sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install -y gh
+dnf install 'dnf-command(config-manager)'
+dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+dnf install -y gh
 
 # Platform tools
 echo -e "\nInstalling Android SDK platform tools..."
@@ -109,13 +109,13 @@ rm platform-tools-latest-linux.zip
 
 echo -e "\nSetting up android udev rules..."
 git clone https://github.com/M0Rf30/android-udev-rules.git /tmp/android-udev-rules && cd /tmp/android-udev-rules
-sudo cp -v 51-android.rules /etc/udev/rules.d/51-android.rules
-sudo chmod a+r /etc/udev/rules.d/51-android.rules
-sudo cp android-udev.conf /usr/lib/sysusers.d/
-sudo systemd-sysusers
-sudo gpasswd -a $(whoami) adbusers
-sudo udevadm control --reload-rules
-sudo systemctl restart systemd-udevd.service
+cp -v 51-android.rules /etc/udev/rules.d/51-android.rules
+chmod a+r /etc/udev/rules.d/51-android.rules
+cp android-udev.conf /usr/lib/sysusers.d/
+systemd-sysusers
+gpasswd -a $(whoami) adbusers
+udevadm control --reload-rules
+systemctl restart systemd-udevd.service
 adb kill-server
 rm -rf /tmp/android-udev-rules
 
@@ -149,10 +149,10 @@ gsettings set org.gnome.shell.extensions.pop-shell gap-outer 1
 gsettings set org.gnome.shell.extensions.pop-shell gap-inner 1
 
 # Optimize boot time, it takes the longest time while booting
-sudo systemctl disable NetworkManager-wait-online.service
+systemctl disable NetworkManager-wait-online.service
 
 # Disable CPU Boosting (for AMD CPUs)
-echo "0" | sudo tee /sys/devices/system/cpu/cpufreq/boost
+echo "0" | tee /sys/devices/system/cpu/cpufreq/boost
 
 echo -e "\nInstalling gnome-extensions..."
 gnome_extensions
