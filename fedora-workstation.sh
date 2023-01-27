@@ -108,7 +108,8 @@ unzip -qq platform-tools-latest-linux.zip
 rm platform-tools-latest-linux.zip
 
 echo -e "\nSetting up android udev rules..."
-git clone https://github.com/M0Rf30/android-udev-rules.git /tmp/android-udev-rules && cd /tmp/android-udev-rules
+git clone https://github.com/M0Rf30/android-udev-rules.git
+cd android-udev-rules
 sudo cp -v 51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod a+r /etc/udev/rules.d/51-android.rules
 sudo cp android-udev.conf /usr/lib/sysusers.d/
@@ -117,7 +118,7 @@ sudo gpasswd -a $(whoami) adbusers
 sudo udevadm control --reload-rules
 sudo systemctl restart systemd-udevd.service
 adb kill-server
-rm -rf /tmp/android-udev-rules
+rm -rf android-udev-rules
 
 # Configure git
 echo -e "\nSetting up Git..."
