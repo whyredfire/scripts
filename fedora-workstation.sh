@@ -81,11 +81,11 @@ sudo yum-config-manager --disable code
 
 # Caffeine
 echo -e "\nInstalling Caffeine extension..."
-https://github.com/eonpatapon/gnome-shell-extension-caffeine
+git clone https://github.com/eonpatapon/gnome-shell-extension-caffeine
 cd gnome-shell-extension-caffeine
 make build
 make install
-cd ../..
+cd ..
 rm -rf gnome-shell-extension-caffeine
 
 # pfetch
