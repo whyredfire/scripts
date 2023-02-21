@@ -148,9 +148,6 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize
 # Optimize boot time, it takes the longest time while booting
 sudo systemctl disable NetworkManager-wait-online.service
 
-# Disable CPU Boosting (for AMD CPUs)
-echo "0" | sudo tee /sys/devices/system/cpu/cpufreq/boost
-
 echo -e "\nInstalling gnome-extensions..."
 gnome_extensions
 
