@@ -42,6 +42,7 @@ function gnome_extensions(){
 array=(https://extensions.gnome.org/extension/779/clipboard-indicator/
 https://extensions.gnome.org/extension/19/user-themes/
 https://extensions.gnome.org/extension/1460/vitals/
+https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
 )
 
 for i in "${array[@]}"
