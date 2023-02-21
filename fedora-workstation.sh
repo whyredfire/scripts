@@ -23,7 +23,6 @@ sudo dnf install -y \
     android-tools \
     discord \
     gnome-extensions-app.x86_64 \
-    gnome-shell-extension-pop-shell \
     gnome-tweaks \
     htop \
     imwheel \
@@ -146,9 +145,6 @@ gsettings set org.gnome.desktop.interface locate-pointer true
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-gsettings set org.gnome.shell.extensions.pop-shell tile-by-default true
-gsettings set org.gnome.shell.extensions.pop-shell gap-outer 1
-gsettings set org.gnome.shell.extensions.pop-shell gap-inner 1
 
 # Optimize boot time, it takes the longest time while booting
 sudo systemctl disable NetworkManager-wait-online.service
