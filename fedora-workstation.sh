@@ -77,7 +77,6 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 sudo dnf check-update
 sudo dnf install -y code
-sudo yum-config-manager --disable code
 
 # Caffeine
 echo -e "\nInstalling Caffeine extension..."
