@@ -43,12 +43,6 @@ sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.re
 sudo dnf install gh
 echo -e "Done."
 
-echo -e "\nInstalling Android SDK platform tools..."
-wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip
-unzip -qq platform-tools-latest-linux.zip
-rm platform-tools-latest-linux.zip
-echo -e "Done."
-
 echo -e "\nInstalling Google Drive CLI..."
 wget -q https://raw.githubusercontent.com/usmanmughalji/gdriveupload/master/gdrive
 chmod a+x gdrive
