@@ -89,13 +89,6 @@ make install
 cd ..
 rm -rf gnome-shell-extension-caffeine
 
-# pfetch
-echo -e "\nInstalling pfetch..."
-git clone https://github.com/dylanaraps/pfetch.git
-sudo install pfetch/pfetch /usr/local/bin/
-ls -l /usr/local/bin/pfetch
-rm -rf pfetch
-
 # git-cli
 echo -e "\nInstalling git-cli..."
 sudo dnf install 'dnf-command(config-manager)'
