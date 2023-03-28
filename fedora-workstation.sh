@@ -32,11 +32,13 @@ sudo dnf install -y \
     telegram-desktop \
     tldr
 
+# battop
 echo -e "\nInstalling battop..."
 wget https://github.com/svartalf/rust-battop/releases/download/v0.2.4/battop-v0.2.4-x86_64-unknown-linux-gnu -O battop
 sudo mv battop /usr/bin/
 sudo chmod +x /usr/bin/battop
 
+# gnome extensions
 function gnome_extensions(){
 array=(https://extensions.gnome.org/extension/779/clipboard-indicator/
 https://extensions.gnome.org/extension/19/user-themes/
