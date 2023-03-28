@@ -32,6 +32,23 @@ sudo dnf install -y \
     telegram-desktop \
     tldr
 
+# docker
+sudo dnf remove -y docker \
+                   docker-client \
+                   docker-client-latest \
+                   docker-common \
+                   docker-latest \
+                   docker-latest-logrotate \
+                   docker-logrotate \
+                   docker-selinux \
+                   docker-engine-selinux \
+                   docker-engine
+
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl start docker
+
 # battop
 echo -e "\nInstalling battop..."
 wget https://github.com/svartalf/rust-battop/releases/download/v0.2.4/battop-v0.2.4-x86_64-unknown-linux-gnu -O battop
