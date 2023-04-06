@@ -19,15 +19,15 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 # Install packages
 echo -e "Installing and updating dnf packages ...\n"
-sudo dnf install -y \
-    android-tools \
-    discord \
-    htop \
-    neofetch \
-    nload \
-    pavucontrol \
-    telegram-desktop \
-    tldr
+sudo dnf update -y
+sudo dnf install -y android-tools \
+                    discord \
+                    htop \
+                    neofetch \
+                    nload \
+                    pavucontrol \
+                    telegram-desktop \
+                    tldr
 
 # docker
 sudo dnf remove -y docker \
