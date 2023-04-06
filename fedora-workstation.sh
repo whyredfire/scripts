@@ -22,8 +22,6 @@ echo -e "Installing and updating dnf packages ...\n"
 sudo dnf install -y \
     android-tools \
     discord \
-    gnome-extensions-app.x86_64 \
-    gnome-tweaks \
     htop \
     imwheel \
     neofetch \
@@ -55,28 +53,6 @@ wget https://github.com/svartalf/rust-battop/releases/download/v0.2.4/battop-v0.
 sudo mv battop /usr/bin/
 sudo chmod +x /usr/bin/battop
 
-# gnome extensions
-function gnome_extensions(){
-array=(https://extensions.gnome.org/extension/779/clipboard-indicator/
-https://extensions.gnome.org/extension/19/user-themes/
-https://extensions.gnome.org/extension/1460/vitals/
-https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
-)
-
-for i in "${array[@]}"
-do
-    EXTENSION_ID=$(curl -s $i | grep -oP 'data-uuid="\K[^"]+')
-    VERSION_TAG=$(curl -Lfs "https://extensions.gnome.org/extension-query/?search=$EXTENSION_ID" | jq '.extensions[0] | .shell_version_map | map(.pk) | max')
-    wget -O ${EXTENSION_ID}.zip "https://extensions.gnome.org/download-extension/${EXTENSION_ID}.shell-extension.zip?version_tag=$VERSION_TAG"
-    gnome-extensions install --force ${EXTENSION_ID}.zip
-    if ! gnome-extensions list | grep --quiet ${EXTENSION_ID}; then
-        busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${EXTENSION_ID}
-    fi
-    gnome-extensions enable ${EXTENSION_ID}
-    rm ${EXTENSION_ID}.zip
-done
-}
-
 # Multimedia plugins
 echo -e "\nInstalling multimedia plugins..."
 sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
@@ -96,15 +72,6 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 sudo dnf check-update
 sudo dnf install -y code
-
-# Caffeine
-echo -e "\nInstalling Caffeine extension..."
-git clone https://github.com/eonpatapon/gnome-shell-extension-caffeine
-cd gnome-shell-extension-caffeine
-make build
-make install
-cd ..
-rm -rf gnome-shell-extension-caffeine
 
 # git-cli
 echo -e "\nInstalling git-cli..."
@@ -147,8 +114,14 @@ git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
 git config --global core.editor "nano"
 
-# gnome shell presets
-echo -e "\nSetting gnome shell presets..."
+# Optimize boot time, it takes the longest time while booting
+sudo systemctl disable NetworkManager-wait-online.service
+
+# gnome shell
+echo -e "\nSetting gnome shell ..."
+sudo dnf install -y gnome-extensions-app.x86_64 \
+                    gnome-tweaks
+
 gsettings set org.gnome.shell disable-user-extensions false
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
@@ -157,8 +130,32 @@ gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 
-# Optimize boot time, it takes the longest time while booting
-sudo systemctl disable NetworkManager-wait-online.service
+# Caffeine
+git clone https://github.com/eonpatapon/gnome-shell-extension-caffeine
+cd gnome-shell-extension-caffeine
+make build
+make install
+cd ..
+rm -rf gnome-shell-extension-caffeine
 
-echo -e "\nInstalling gnome-extensions..."
+function gnome_extensions(){
+    array=(https://extensions.gnome.org/extension/779/clipboard-indicator/
+    https://extensions.gnome.org/extension/19/user-themes/
+    https://extensions.gnome.org/extension/1460/vitals/
+    https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
+    )
+
+    for i in "${array[@]}"
+    do
+        EXTENSION_ID=$(curl -s $i | grep -oP 'data-uuid="\K[^"]+')
+        VERSION_TAG=$(curl -Lfs "https://extensions.gnome.org/extension-query/?search=$EXTENSION_ID" | jq '.extensions[0] | .shell_version_map | map(.pk) | max')
+        wget -O ${EXTENSION_ID}.zip "https://extensions.gnome.org/download-extension/${EXTENSION_ID}.shell-extension.zip?version_tag=$VERSION_TAG"
+        gnome-extensions install --force ${EXTENSION_ID}.zip
+        if ! gnome-extensions list | grep --quiet ${EXTENSION_ID}; then
+            busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${EXTENSION_ID}
+        fi
+        gnome-extensions enable ${EXTENSION_ID}
+        rm ${EXTENSION_ID}.zip
+    done
+}
 gnome_extensions
