@@ -23,7 +23,6 @@ sudo dnf install -y \
     android-tools \
     discord \
     htop \
-    imwheel \
     neofetch \
     nload \
     pavucontrol \
