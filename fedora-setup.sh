@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Script to set up a Fedora 32+ server
+# Script to set up a Fedora 37 server
 # (with minimum 16GB RAM, 8 threads CPU) for android ROM compiling
 #
 # Sudo access is mandatory to run this script
@@ -11,10 +11,6 @@
 # Usage:
 #	./fedora-setup.sh
 #
-
-# Go to home dir
-orig_dir=$(pwd)
-cd $HOME
 
 echo -e "Installing and updating dnf packages...\n"
 sudo dnf update -qq
@@ -37,19 +33,6 @@ sudo install repo /usr/local/bin/repo
 rm repo
 echo -e "Done."
 
-echo -e "\nInstalling git-cli..."
-sudo dnf install 'dnf-command(config-manager)'
-sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install gh
-echo -e "Done."
-
-echo -e "\nInstalling Google Drive CLI..."
-wget -q https://raw.githubusercontent.com/usmanmughalji/gdriveupload/master/gdrive
-chmod a+x gdrive
-sudo install gdrive /usr/local/bin/gdrive
-rm gdrive
-echo -e "Done."
-
 echo -e "\nInstalling apktool and JADX..."
 mkdir -p bin
 wget -q https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.6.0.jar -O bin/apktool.jar
@@ -61,18 +44,12 @@ rm jadx-1.4.4.zip
 echo 'export PATH="$HOME/jadx/bin:$PATH"' >> .bashrc
 echo -e "Done."
 
-echo -e "\nSetting up shell environment..."
-if [[ $SHELL = *zsh* ]]; then
-sh_rc=".zshrc"
-else
-sh_rc=".bashrc"
-fi
-
-###
-### IMPORTANT !!! REPLACE WITH YOUR PERSONAL DETAILS IF NECESSARY
-###
-# Configure git
+# git
 echo -e "\nSetting up Git..."
+
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install gh
 
 git config --global user.email "karan@pixelos.net"
 git config --global user.name "Karan Parashar"
@@ -89,7 +66,4 @@ echo "Done."
 
 # Done!
 echo -e "\nALL DONE. Now sync sauces & start baking!"
-echo -e "Please relogin or run \`source ~/$sh_rc && source ~/.profile\` for environment changes to take effect."
-
-# Go back to original dir
-cd "$orig_dir"
+echo -e "Please relogin or run \`source ~/.bashrc && source ~/.profile\` for environment changes to take effect."
