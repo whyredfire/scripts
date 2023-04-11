@@ -72,12 +72,6 @@ EOF
 sudo dnf check-update
 sudo dnf install -y code
 
-# git-cli
-echo -e "\nInstalling git-cli..."
-sudo dnf install 'dnf-command(config-manager)'
-sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install -y gh
-
 # Platform tools
 echo -e "\nInstalling Android SDK platform tools..."
 wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip
@@ -97,8 +91,12 @@ sudo systemctl restart systemd-udevd.service
 adb kill-server
 rm -rf android-udev-rules
 
-# Configure git
+# git
 echo -e "\nSetting up Git..."
+
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install -y gh
 
 git config --global user.email "karan@pixelos.net"
 git config --global user.name "Karan Parashar"
