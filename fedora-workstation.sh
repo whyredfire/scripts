@@ -111,9 +111,6 @@ git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
 git config --global core.editor "nano"
 
-# Optimize boot time, it takes the longest time while booting
-sudo systemctl disable NetworkManager-wait-online.service
-
 # gnome shell
 echo -e "\nSetting gnome shell ..."
 sudo dnf install -y gnome-extensions-app.x86_64 \
