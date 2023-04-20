@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Script to setup Fedora 37 Workstation
+# Script to setup Fedora 38 Workstation
 #
 # Usage:
 #        ./fedora-workstation.sh
