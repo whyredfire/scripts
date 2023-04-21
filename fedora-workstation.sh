@@ -26,8 +26,9 @@ sudo dnf install -y android-tools \
                     neofetch \
                     nload \
                     pavucontrol \
-                    telegram-desktop \
                     tldr
+
+flatpak install flathub org.telegram.desktop -y
 
 # docker
 sudo dnf remove -y docker \
