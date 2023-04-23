@@ -28,7 +28,9 @@ sudo dnf install -y android-tools \
                     pavucontrol \
                     tldr
 
-flatpak install flathub org.telegram.desktop -y
+flatpak install flathub -y org.telegram.desktop \
+                           org.videolan.VLC \
+                           us.zoom.Zoom
 
 # docker
 sudo dnf remove -y docker \
