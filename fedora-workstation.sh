@@ -114,8 +114,9 @@ git config --global core.editor "nano"
 
 # gnome shell
 echo -e "\nSetting gnome shell ..."
-sudo dnf install -y gnome-extensions-app.x86_64 \
-                    gnome-tweaks
+
+sudo dnf install -y gnome-tweaks
+flatpak install flathub com.mattjakeman.ExtensionManager -y
 
 gsettings set org.gnome.shell disable-user-extensions false
 gsettings set org.gnome.desktop.interface show-battery-percentage true
