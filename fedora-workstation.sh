@@ -23,6 +23,8 @@ sudo dnf update -y
 sudo dnf install -y android-tools \
                     discord \
                     htop \
+                    java-latest-openjdk-devel.x86_64 \
+		    java-latest-openjdk.x86_64 \
                     neofetch \
                     nload \
                     pavucontrol \
