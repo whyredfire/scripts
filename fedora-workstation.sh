@@ -30,7 +30,10 @@ sudo dnf install -y android-tools \
                     pavucontrol \
                     tldr
 
-flatpak install flathub -y com.visualstudio.code \
+flatpak install flathub -y com.anydesk.Anydesk \
+			   com.microsoft.EdgeDev \
+			   com.visualstudio.code \
+			   io.github.mimbrero.WhatsAppDesktop \
                            org.telegram.desktop \
                            org.videolan.VLC \
                            us.zoom.Zoom
