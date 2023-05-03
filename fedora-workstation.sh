@@ -21,7 +21,6 @@ flatpak remote-modify --enable flathub
 echo -e "Installing and updating dnf packages ...\n"
 sudo dnf update -y
 sudo dnf install -y android-tools \
-                    discord \
                     htop \
                     java-latest-openjdk-devel.x86_64 \
 		    java-latest-openjdk.x86_64 \
@@ -31,6 +30,7 @@ sudo dnf install -y android-tools \
                     tldr
 
 flatpak install flathub -y com.anydesk.Anydesk \
+			   com.discordapp.Discord \
 			   com.microsoft.EdgeDev \
 			   com.visualstudio.code \
 			   io.github.mimbrero.WhatsAppDesktop \
