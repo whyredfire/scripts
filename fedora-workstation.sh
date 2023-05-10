@@ -116,7 +116,7 @@ git config --global alias.rb 'rebase'
 git config --global alias.rs 'reset'
 git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
-git config --global core.editor "nano"
+git config --global core.editor "nvim"
 
 # gnome shell
 echo -e "\nSetting gnome shell ..."
