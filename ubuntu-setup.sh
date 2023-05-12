@@ -88,8 +88,10 @@ ccache -M 100G
 # Configure git
 echo -e "\nSetting up Git..."
 
-git config --global user.email "karan@pixelos.net"
-git config --global user.name "Karan Parashar"
+if [[ $USER == "karan" ]]; then
+  git config --global user.email "karan@pixelos.net"
+  git config --global user.name "Karan Parashar"
+fi
 
 git config --global alias.cp 'cherry-pick'
 git config --global alias.c 'commit'
