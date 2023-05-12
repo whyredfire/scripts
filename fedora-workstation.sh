@@ -35,9 +35,9 @@ flatpak install flathub -y com.anydesk.Anydesk \
 			   com.microsoft.EdgeDev \
 			   com.visualstudio.code \
 			   io.github.mimbrero.WhatsAppDesktop \
-                           org.telegram.desktop \
-                           org.videolan.VLC \
-                           us.zoom.Zoom
+			   org.telegram.desktop \
+			   org.videolan.VLC \
+			   us.zoom.Zoom
 
 # Provide host terminal to vscode flatpak
 cat > "$HOME/.config/Code/User/settings.json" <<EOF
