@@ -32,6 +32,7 @@ sudo dnf install -y android-tools \
 
 flatpak install flathub -y com.anydesk.Anydesk \
 			   com.discordapp.Discord \
+                           com.github.IsmaelMartinez.teams_for_linux \
 			   com.microsoft.EdgeDev \
 			   com.visualstudio.code \
 			   io.github.mimbrero.WhatsAppDesktop \
