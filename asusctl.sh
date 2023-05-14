@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Script to setup asusctl and nvidia drivers on my machine
 # Supported OS: Fedora 38

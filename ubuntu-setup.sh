@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Script to set up an Ubuntu 22.04+ server
 # (with minimum 16GB RAM, 8 threads CPU) for android ROM compiling
