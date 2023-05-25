@@ -105,48 +105,15 @@ git config --global credential.helper 'cache --timeout=99999999'
 git config --global core.editor "nvim"
 
 # gnome shell
-if [ "$(echo $XDG_CURRENT_DESKTOP)" == "GNOME" ]; then
-  echo -e "\nSetting gnome shell ..."
+echo -e "\nSetting gnome shell ..."
 
-  sudo dnf install -y gnome-tweaks
-  flatpak install flathub com.mattjakeman.ExtensionManager -y
+sudo dnf install -y gnome-tweaks
+flatpak install flathub com.mattjakeman.ExtensionManager -y
 
-  gsettings set org.gnome.shell disable-user-extensions false
-  gsettings set org.gnome.desktop.interface show-battery-percentage true
-  gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-  gsettings set org.gnome.desktop.interface locate-pointer true
-  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-  gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-
-  # Caffeine
-  git clone https://github.com/eonpatapon/gnome-shell-extension-caffeine
-  cd gnome-shell-extension-caffeine
-  make build
-  make install
-  cd ..
-  rm -rf gnome-shell-extension-caffeine
-
-  function gnome_extensions(){
-      array=(https://extensions.gnome.org/extension/779/clipboard-indicator/
-      https://extensions.gnome.org/extension/19/user-themes/
-      https://extensions.gnome.org/extension/1460/vitals/
-      )
-
-      for i in "${array[@]}"
-      do
-          EXTENSION_ID=$(curl -s $i | grep -oP 'data-uuid="\K[^"]+')
-          VERSION_TAG=$(curl -Lfs "https://extensions.gnome.org/extension-query/?search=$EXTENSION_ID" | jq '.extensions[0] | .shell_version_map | map(.pk) | max')
-          wget -O ${EXTENSION_ID}.zip "https://extensions.gnome.org/download-extension/${EXTENSION_ID}.shell-extension.zip?version_tag=$VERSION_TAG"
-          gnome-extensions install --force ${EXTENSION_ID}.zip
-          if ! gnome-extensions list | grep --quiet ${EXTENSION_ID}; then
-              busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${EXTENSION_ID}
-          fi
-          gnome-extensions enable ${EXTENSION_ID}
-          rm ${EXTENSION_ID}.zip
-      done
-  }
-  gnome_extensions
-else
-  echo "Default desktop layout is not GNOME. Skipping installation of GNOME-specific packages."
-fi
+gsettings set org.gnome.shell disable-user-extensions false
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+gsettings set org.gnome.desktop.interface locate-pointer true
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
