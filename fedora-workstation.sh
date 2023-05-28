@@ -41,13 +41,16 @@ flatpak install flathub -y com.anydesk.Anydesk \
 			   us.zoom.Zoom
 
 # Provide host terminal to vscode flatpak
+mkdir -p $HOME/.config/Code/User && touch $HOME/.config/Code/User/settings.json
 cat > "$HOME/.config/Code/User/settings.json" <<EOF
 {
-    "workbench.editor.untitled.hint": "hidden",
-    "security.workspace.trust.untrustedFiles": "open",
-    "editor.minimap.enabled": false,
-    "git.openRepositoryInParentFolders": "never",
-    "liveServer.settings.donotShowInfoMsg": true
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+          "path": "/usr/bin/flatpak-spawn",
+          "args": ["--host", "--env=TERM=xterm-256color", "bash"]
+        }
+    }
 }
 EOF
 
