@@ -28,7 +28,8 @@ sudo dnf install -y android-tools \
                     neovim \
                     nload \
                     pavucontrol \
-                    tldr
+                    ripgrep \                     
+		    tldr
 
 flatpak install flathub -y com.anydesk.Anydesk \
 			   com.discordapp.Discord \
