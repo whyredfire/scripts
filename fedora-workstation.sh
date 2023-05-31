@@ -108,6 +108,17 @@ git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
 git config --global core.editor "nvim"
 
+# Setup nvchad for neovim
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/JetBrainsMono.zip
+unzip -o JetBrainsMono.zip
+mv JetBrainsMono ~/.fonts
+fc-cache -f -v
+
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+
 # gnome shell
 echo -e "\nSetting gnome shell ..."
 
