@@ -113,8 +113,7 @@ rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
 
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/JetBrainsMono.zip
-unzip -o JetBrainsMono.zip
-mv JetBrainsMono ~/.fonts
+unzip JetBrainsMono.zip -d ~/.fonts
 fc-cache -f -v
 
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
