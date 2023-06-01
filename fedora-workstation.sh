@@ -124,6 +124,7 @@ echo -e "\nSetting gnome shell ..."
 sudo dnf install -y gnome-tweaks
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 
+# To list all GNOME desktop interface settings - gsettings list-recursively org.gnome.desktop.interface
 gsettings set org.gnome.shell disable-user-extensions false
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
