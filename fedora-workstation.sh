@@ -17,6 +17,10 @@ sudo dnf install -y \
 # Enable flatpak
 flatpak remote-modify --enable flathub
 
+# Remove shipped libreoffice
+sudo dnf group remove libreoffice -y
+sudo dnf remove libreoffice-core -y
+
 # Install packages
 echo -e "Installing and updating dnf packages ...\n"
 sudo dnf update -y
@@ -34,10 +38,11 @@ sudo dnf install -y android-tools \
 
 flatpak install flathub -y com.anydesk.Anydesk \
 			   com.discordapp.Discord \
-                           com.github.IsmaelMartinez.teams_for_linux \
+			   com.github.IsmaelMartinez.teams_for_linux \
 			   com.microsoft.EdgeDev \
 			   com.visualstudio.code \
 			   io.github.mimbrero.WhatsAppDesktop \
+			   org.libreoffice.LibreOffice \
 			   org.telegram.desktop \
 			   org.videolan.VLC \
 			   us.zoom.Zoom
