@@ -137,6 +137,7 @@ sudo dnf install -y \
 
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/JetBrainsMono.zip
 unzip JetBrainsMono.zip -d ~/.fonts
+rm JetBrainsMono.zip
 
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 
