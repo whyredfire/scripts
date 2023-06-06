@@ -69,6 +69,7 @@ sudo dnf install -y \
   docker-compose-plugin
 
 sudo usermod -aG docker $USER
+sudo systemctl enable docker
 sudo systemctl start docker
 
 # git
