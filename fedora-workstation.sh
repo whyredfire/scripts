@@ -142,18 +142,7 @@ rm JetBrainsMono.zip
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 
 # vscode
-flatpak install flathub -y com.visualstudio.code
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
-mkdir -p $HOME/.config/Code/User
-touch $HOME/.config/Code/User/settings.json
-cat > "$HOME/.config/Code/User/settings.json" <<EOF
-{
-    "terminal.integrated.defaultProfile.linux": "bash",
-    "terminal.integrated.profiles.linux": {
-        "bash": {
-          "path": "/usr/bin/flatpak-spawn",
-          "args": ["--host", "--env=TERM=xterm-256color", "bash"]
-        }
-    }
-}
-EOF
+sudo dnf install -y code
