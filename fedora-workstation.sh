@@ -22,7 +22,6 @@ flatpak remote-modify --enable flathub
 # Install packages
 sudo dnf update -y
 sudo dnf install -y \
-  android-tools \
   dnf-plugins-core \
   htop \
   java-latest-openjdk-devel.x86_64 \
@@ -114,9 +113,7 @@ sudo dnf remove -y libreoffice-core
 flatpak install flathub -y org.libreoffice.LibreOffice
 
 # platform tools
-wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip
-unzip -qq platform-tools-latest-linux.zip
-rm platform-tools-latest-linux.zip
+sudo dnf install -y android-tools
 
 git clone https://github.com/M0Rf30/android-udev-rules.git
 cd android-udev-rules
