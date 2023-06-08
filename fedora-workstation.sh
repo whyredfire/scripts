@@ -37,8 +37,8 @@ flatpak install flathub -y \
   com.discordapp.Discord \
   com.github.IsmaelMartinez.teams_for_linux \
   com.microsoft.EdgeDev \
+  io.github.celluloid_player.Celluloid \
   org.telegram.desktop \
-  org.videolan.VLC \
   us.zoom.Zoom
 
 # battop
