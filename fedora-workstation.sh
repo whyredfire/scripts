@@ -11,6 +11,11 @@ sudo dnf install -y \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+# Speed up dnf
+echo "max_parallel_downloads=5" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
+echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
+sudo dnf update --refresh
+
 # Multimedia plugins
 sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
 sudo dnf install -y lame\* --exclude=lame-devel
