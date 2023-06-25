@@ -42,6 +42,7 @@ flatpak install flathub -y \
   com.discordapp.Discord \
   com.github.IsmaelMartinez.teams_for_linux \
   com.microsoft.EdgeDev \
+  de.haeckerfelix.Fragments \
   im.riot.Riot \
   io.github.celluloid_player.Celluloid \
   org.telegram.desktop \
