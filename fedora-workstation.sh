@@ -97,7 +97,7 @@ git config --global alias.rb 'rebase'
 git config --global alias.rs 'reset'
 git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
-git config --global core.editor "nvim"
+git config --global core.editor "nano"
 
 # gnome shell
 sudo dnf install -y gnome-tweaks
@@ -113,6 +113,11 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '12h'
+
+# JetbrainsMono font
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/JetBrainsMono.zip
+unzip JetBrainsMono.zip -d ~/.fonts
+rm JetBrainsMono.zip
 
 # libreoffice
 sudo dnf group remove -y libreoffice
@@ -134,17 +139,6 @@ sudo udevadm control --reload-rules
 sudo systemctl restart systemd-udevd.service
 adb kill-server
 rm -rf android-udev-rules
-
-# neovim
-sudo dnf install -y \
-  neovim \
-  ripgrep
-
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/JetBrainsMono.zip
-unzip JetBrainsMono.zip -d ~/.fonts
-rm JetBrainsMono.zip
-
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 
 # vscode
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
