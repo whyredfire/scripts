@@ -39,12 +39,6 @@ sudo apt update
 sudo apt install gh
 echo -e "Done."
 
-echo -e "\nInstalling Android SDK platform tools..."
-wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip
-unzip -qq platform-tools-latest-linux.zip
-rm platform-tools-latest-linux.zip
-echo -e "Done."
-
 echo -e "\nInstalling apktool and JADX..."
 mkdir -p bin
 wget -q https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.6.0.jar -O bin/apktool.jar
@@ -63,14 +57,6 @@ repofastsync() { time schedtool -B -e ionice -n 0 `which repo` sync -c --force-s
 # List lib dependencies of any lib/bin
 list_blob_deps() { readelf -d $1 | grep "\(NEEDED\)" | sed -r "s/.*\[(.*)\]/\1/"; }
 export TZ='Asia/Kolkata'
-EOF
-
-# Add android sdk to path
-cat <<'EOF' >> .profile
-# Add Android SDK platform tools to path
-if [ -d "$HOME/platform-tools" ] ; then
-    PATH="$HOME/platform-tools:$PATH"
-fi
 EOF
 
 # Unlimited history file
