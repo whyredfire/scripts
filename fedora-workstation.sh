@@ -45,6 +45,7 @@ flatpak install flathub -y \
   de.haeckerfelix.Fragments \
   im.riot.Riot \
   io.github.celluloid_player.Celluloid \
+  net.agalwood.Motrix \
   org.telegram.desktop \
   us.zoom.Zoom
 
