@@ -118,9 +118,7 @@ gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '12h'
 
 # JetbrainsMono font
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/JetBrainsMono.zip
-unzip JetBrainsMono.zip -d ~/.fonts
-rm JetBrainsMono.zip
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 
 # libreoffice
 sudo dnf group remove -y libreoffice
