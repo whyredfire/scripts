@@ -77,8 +77,7 @@ sudo dnf install -y \
   docker-compose-plugin
 
 sudo usermod -aG docker $USER
-sudo systemctl enable docker
-sudo systemctl start docker
+sudo systemctl enable docker --now
 
 sudo dnf install -y distrobox
 
