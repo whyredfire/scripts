@@ -12,8 +12,8 @@ grn=$'\e[1;32m'
 blu=$'\e[1;34m'
 end=$'\e[0m'
 
-REMOTE="thirteen"
-BRANCH="PixelOS"
+REMOTE="PixelOS"
+BRANCH="thirteen"
 
 BLACKLIST=""
 
