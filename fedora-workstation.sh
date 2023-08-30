@@ -33,7 +33,9 @@ sudo dnf install -y \
   java-latest-openjdk.x86_64 \
   neofetch \
   nload \
+  neovim \
   pavucontrol \
+  ripgrep \
   tldr \
   tmate
 
@@ -99,7 +101,7 @@ git config --global alias.rb 'rebase'
 git config --global alias.rs 'reset'
 git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
-git config --global core.editor "nano"
+git config --global core.editor "nvim"
 
 # gnome shell
 sudo dnf install -y gnome-tweaks
@@ -124,6 +126,9 @@ sudo dnf group remove -y libreoffice
 sudo dnf remove -y libreoffice-core
 
 flatpak install flathub -y org.libreoffice.LibreOffice
+
+# nvchad
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 
 # platform tools
 sudo dnf install -y android-tools
