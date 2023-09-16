@@ -42,16 +42,11 @@ sudo systemctl enable supergfxd.service --now
 sudo dnf update -y
 sudo dnf install -y \
   dnf-plugins-core \
-  htop \
+  htop neofetch nload tldr \
   gnome-tweaks \
-  java-latest-openjdk-devel.x86_64 \
-  java-latest-openjdk.x86_64 \
-  neofetch \
-  nload \
-  neovim \
+  java-latest-openjdk-devel.x86_64 java-latest-openjdk.x86_64 \
+  neovim ripgrep \
   pavucontrol \
-  ripgrep \
-  tldr \
   tmate
 
 flatpak install flathub -y \
