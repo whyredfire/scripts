@@ -14,6 +14,9 @@ sudo pacman -S --noconfirm \
     noto-fonts-cjk noto-fonts-extra \
     nvidia-dkms
 
+# Enable bluetooth
+systemctl enable --now bluetooth
+
 # Install yay and their packages
 git clone https://aur.archlinux.org/yay.git && cd yay
 makepkg -si
