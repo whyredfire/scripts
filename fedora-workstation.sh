@@ -117,8 +117,12 @@ git config --global alias.ck 'checkout'
 git config --global credential.helper 'cache --timeout=99999999'
 git config --global core.editor "nvim"
 
-# JetbrainsMono font
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
+# Install patched Nerd Fonts
+mkdir -p ~/.fonts
+wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip" -O JetBrainsMono.zip
+unzip JetBrainsMono.zip -d ~/.fonts/
+rm JetBrainsMono.zip
+fc-cache -fv
 
 # libreoffice
 sudo dnf group remove -y libreoffice
