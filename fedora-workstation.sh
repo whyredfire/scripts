@@ -43,6 +43,7 @@ sudo dnf update -y
 sudo dnf install -y \
   dnf-plugins-core \
   htop \
+  gnome-tweaks \
   java-latest-openjdk-devel.x86_64 \
   java-latest-openjdk.x86_64 \
   neofetch \
@@ -57,6 +58,7 @@ flatpak install flathub -y \
   com.anydesk.Anydesk \
   com.discordapp.Discord \
   com.github.IsmaelMartinez.teams_for_linux \
+  com.mattjakeman.ExtensionManager \
   com.microsoft.EdgeDev \
   de.haeckerfelix.Fragments \
   im.riot.Riot \
@@ -153,3 +155,16 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
 sudo dnf install -y code
+
+# Configure GNOME settings
+# gsettings list-recursively org.gnome.desktop.interface
+gsettings set org.gnome.shell disable-user-extensions false
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+gsettings set org.gnome.desktop.interface locate-pointer true
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+gsettings set org.gnome.desktop.interface clock-show-weekday true
+gsettings set org.gnome.desktop.interface clock-format '12h'
+gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font Medium 10'
