@@ -14,7 +14,6 @@
 
 echo -e "Installing and updating APT packages...\n"
 sudo apt update -qq
-sudo apt full-upgrade -y -qq
 sudo apt install -y -qq git-core gnupg flex bc bison build-essential zip curl zlib1g-dev gcc-multilib \
                         g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev jq \
                         lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig imagemagick \
