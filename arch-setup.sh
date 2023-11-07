@@ -37,8 +37,8 @@ flatpak install flathub -y \
     org.telegram.desktop
 
 # Import the PGP key for asusctl
-pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
+sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
 
 # Add the custom repository to /etc/pacman.conf
 echo -e "\n[g14]\nServer = https://arch.asus-linux.org" | sudo tee -a /etc/pacman.conf
