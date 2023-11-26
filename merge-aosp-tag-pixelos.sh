@@ -13,7 +13,7 @@ blu=$'\e[1;34m'
 end=$'\e[0m'
 
 REMOTE="PixelOS"
-BRANCH="thirteen"
+BRANCH="fourteen"
 
 BLACKLIST=""
 
