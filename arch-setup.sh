@@ -4,17 +4,13 @@
 sudo pacman -S --noconfirm \
     android-tools \
     bat htop neofetch tldr wget \
-    bluez bluez-utils blueman \
     neovim \
-    distrobox docker \
     flatpak \
     gcc jre-openjdk-headless \
-    git github-cli \
-    gnome-themes-extra \
-    noto-fonts-cjk noto-fonts-extra \
-    nvidia-dkms
+    noto-fonts-cjk noto-fonts-extra
 
-# Enable bluetooth
+# Setup bluetooth
+sudo pacman -S --noconfirm bluez bluez-utils blueman
 systemctl enable --now bluetooth
 
 # Install yay and their packages
@@ -29,7 +25,6 @@ yay -S --noconfirm \
 # Install Flatpak applications
 flatpak install flathub -y \
     com.discordapp.Discord \
-    com.mattjakeman.ExtensionManager \
     de.haeckerfelix.Fragments \
     io.github.colluloid_player.Celluloid \
     net.agalwood.Mortix \
@@ -42,12 +37,12 @@ sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
 
 # Add the custom repository to /etc/pacman.conf
 echo -e "\n[g14]\nServer = https://arch.asus-linux.org" | sudo tee -a /etc/pacman.conf
-sudo pacman -Syu --noconfirm
 
-sudo pacman -S asusctl --noconfirm
+sudo pacman -Syu --noconfirm asusctl
 systemctl enable --now power-profiles-daemon.service
 
-sudo pacman -S supergfxctl
+# Setup nvidia
+sudo pacman -S --noconfirm nvidia-dkms supergfxctl
 systemctl enable --now supergfxd
 
 # Install battop
@@ -55,11 +50,15 @@ wget https://github.com/svartalf/rust-battop/releases/download/v0.2.4/battop-v0.
 sudo mv battop /usr/bin/
 sudo chmod +x /usr/bin/battop
 
-# Add the user to the docker group
+# Setup docker
+sudo pacman -S --noconfirm docker distrobox
+
 sudo usermod -aG docker $USER
 sudo systemctl enable --now docker
 
-# Set Git aliases and other configurations
+# Setup git
+sudo pacman -S --noconfirm git github-cli
+
 if [[ $USER == "karan" ]]; then
   git config --global user.email "karan@pixelos.net"
   git config --global user.name "Karan Parashar"
@@ -84,7 +83,10 @@ fc-cache -fv
 # Clone the NvChad repository
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 --quiet
 
-# Configure GNOME settings
+# Configure GNOME shell
+sudo pacman -S --noconfirm gnome-themes-extra
+flatpak install flathub -y com.mattjakeman.ExtensionManager
+
 # gsettings list-recursively org.gnome.desktop.interface
 gsettings set org.gnome.shell disable-user-extensions false
 gsettings set org.gnome.desktop.interface show-battery-percentage true
