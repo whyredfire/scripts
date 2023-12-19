@@ -16,7 +16,6 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 # Speed up dnf
 echo "max_parallel_downloads=5" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
-echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
 sudo dnf update --refresh
 
 # Multimedia plugins
