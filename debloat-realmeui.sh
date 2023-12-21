@@ -1,18 +1,21 @@
 #!/bin/bash
 
 # List of package names to uninstall
-packages=(
+packagesToUninstall=(
     android.autoinstalls.config.oppo
     com.coloros.activation
     com.coloros.assistantscreen
+    com.coloros.healthcheck
+    com.coloros.securepay
     com.debug.loggerui
     com.facebook.appmanager
+    com.facebook.services
     com.facebook.system
     com.finshell.fin
     com.glance.internet
     com.google.android.feedback
+    com.google.android.onetimeinitializer
     com.google.android.setupwizard
-    com.heytap.browser
     com.heytap.cloud
     com.heytap.music
     com.heytap.pictorial
@@ -28,13 +31,25 @@ packages=(
     com.oplus.themestore
     com.oppo.quicksearchbox
     com.redteamobile.roaming
+    com.tencent.soter.soterserver
     com.android.email.partnerprovider
 )
 
+packagesToUninstallGlobally=(
+    com.finshell.fin
+    com.heytap.browser
+    com.heytap.pictorial
+)
+
 # Loop through the list and uninstall each package
-for package in "${packages[@]}"; do
+for package in "${packagesToUninstall[@]}"; do
     echo "Uninstalling package: $package"
     adb shell pm uninstall -k --user 0 "$package"
+done
+
+for package in "${packagesToUninstallGlobally[@]}"; do
+    echo "Uninstalling package: $package"
+    adb shell pm uninstall -k "$package"
 done
 
 echo "Uninstallation complete"
