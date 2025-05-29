@@ -71,7 +71,9 @@ git config --global alias.m 'merge'
 git config --global alias.rb 'rebase'
 git config --global alias.rs 'reset'
 git config --global alias.ck 'checkout'
-git config --global core.editor "nvim"
+
+git config --global commit.verbose true
+git config --global core.editor 'nvim'
 
 # Install patched Nerd Fonts
 mkdir -p ~/.fonts
