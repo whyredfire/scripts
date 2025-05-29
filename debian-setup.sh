@@ -17,24 +17,27 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 sudo usermod -aG docker "$USER"
 
 # neovim
 sudo wget https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-arm64.appimage -O /usr/local/bin/nvim
-chmod +x /usr/local/bin/nvim
+sudo chmod +x /usr/local/bin/nvim
 
 # btop
 wget https://github.com/aristocratos/btop/releases/download/v1.4.3/btop-aarch64-linux-musl.tbz
 tar -xvjf btop-aarch64-linux-musl.tbz
-cd btop-aarch64-linux-musl && sudo make install
-rm -rf btop-aarch64-linux-musl*
+cd btop && sudo make install
+rm -rf btop btop-aarch64-linux-musl.tbz
+
+# fastfetch
+wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.44.0/fastfetch-linux-aarch64.deb
+sudo dpkg -i fastfetch-linux-aarch64.deb
+rm fastfetch-linux-aarch64.deb
 
 # apt packages
 sudo apt install -y \
-  fastfetch \
-  nginx \
   node \
   npm \
   tmux \
@@ -55,19 +58,22 @@ git config --global alias.ck 'checkout'
 git config --global commit.verbose true
 git config --global core.editor 'nvim'
 
+# tmux
+git clone https://github.com/tmux-plugins/tpm --depth=1 ~/.tmux/plugins/tpm
+
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
 # dotfiles
 git clone https://github.com/whyredfire/dotfiles dotfiles
 cp -r dotfiles/.config/* ~/.config/
 rm -rf dotfiles
 
-# oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
 ZSH_PATH=~/.oh-my-zsh/custom/plugins
 
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PATH/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PATH/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-completions.git $ZSH_PATH/zsh-completions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PATH/zsh-autosuggestions --depth=1
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PATH/zsh-syntax-highlighting --depth=1
+git clone https://github.com/zsh-users/zsh-completions.git $ZSH_PATH/zsh-completions --depth=1
 
 sudo chsh -s $(which zsh)
 
