@@ -22,17 +22,17 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 sudo usermod -aG docker "$USER"
 
 # neovim
-sudo wget https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-arm64.appimage -O /usr/local/bin/nvim
+sudo wget https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-arm64.appimage -O /usr/local/bin/nvim
 sudo chmod +x /usr/local/bin/nvim
 
 # btop
-wget https://github.com/aristocratos/btop/releases/download/v1.4.3/btop-aarch64-linux-musl.tbz
+wget https://github.com/aristocratos/btop/releases/download/v1.4.5/btop-aarch64-linux-musl.tbz
 tar -xvjf btop-aarch64-linux-musl.tbz
 cd btop && sudo make install
 rm -rf btop btop-aarch64-linux-musl.tbz
 
 # fastfetch
-wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.44.0/fastfetch-linux-aarch64.deb
+wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.54.0/fastfetch-linux-aarch64.deb
 sudo dpkg -i fastfetch-linux-aarch64.deb
 rm fastfetch-linux-aarch64.deb
 
@@ -44,7 +44,7 @@ sudo apt install -y \
   zsh
 
 # git
-git config --global user.email "karan.parashar@samey.ai"
+git config --global user.email "whyredfire@gmail.com"
 git config --global user.name "Karan Parashar"
 
 git config --global alias.cp 'cherry-pick'
