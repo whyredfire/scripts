@@ -38,6 +38,7 @@ rm fastfetch-linux-aarch64.deb
 
 # apt packages
 sudo apt install -y \
+  bat \
   node \
   npm \
   tmux \
