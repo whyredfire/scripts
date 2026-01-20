@@ -22,7 +22,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 sudo usermod -aG docker "$USER"
 
 # neovim
-sudo wget https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-arm64.appimage -O /usr/local/bin/nvim
+sudo wget https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-arm64.appimage -O /usr/local/bin/nvim
 sudo chmod +x /usr/local/bin/nvim
 
 # btop
@@ -31,14 +31,10 @@ tar -xvjf btop-aarch64-linux-musl.tbz
 cd btop && sudo make install
 rm -rf btop btop-aarch64-linux-musl.tbz
 
-# fastfetch
-wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.54.0/fastfetch-linux-aarch64.deb
-sudo dpkg -i fastfetch-linux-aarch64.deb
-rm fastfetch-linux-aarch64.deb
-
 # apt packages
 sudo apt install -y \
   bat \
+  fastfetch \
   node \
   npm \
   tmux \
@@ -76,5 +72,4 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PATH/zsh-aut
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PATH/zsh-syntax-highlighting --depth=1
 git clone https://github.com/zsh-users/zsh-completions.git $ZSH_PATH/zsh-completions --depth=1
 
-sudo chsh -s $(which zsh)
-
+chsh -s $(which zsh)
