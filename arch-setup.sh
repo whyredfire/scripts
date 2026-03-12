@@ -3,64 +3,23 @@
 # Install packages with pacman
 sudo pacman -S --noconfirm \
     android-tools \
-    bat htop neofetch tldr wget \
+    bat htop fastfetch wget \
     neovim \
     flatpak \
-    gcc jre-openjdk-headless \
-    noto-fonts-cjk noto-fonts-extra
+    gcc \
+    noto-fonts-cjk noto-fonts-extra \
+    telegram-desktop discord \
+    celluloid
 
 # Setup bluetooth
 sudo pacman -S --noconfirm bluez bluez-utils blueman
 systemctl enable --now bluetooth
 
-# Install yay and their packages
-git clone https://aur.archlinux.org/yay.git && cd yay
-makepkg -si
-cd .. && rm -rf yay
-
-yay -S --noconfirm \
-    google-chrome \
-    visual-studio-code-bin
-
-# Install Flatpak applications
-flatpak install flathub -y \
-    com.discordapp.Discord \
-    de.haeckerfelix.Fragments \
-    io.github.colluloid_player.Celluloid \
-    net.agalwood.Mortix \
-    org.libreoffice.LibreOffice \
-    org.telegram.desktop
-
-# Import the PGP key for asusctl
-sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-
-# Add the custom repository to /etc/pacman.conf
-echo -e "\n[g14]\nServer = https://arch.asus-linux.org" | sudo tee -a /etc/pacman.conf
-
-sudo pacman -Syu --noconfirm asusctl
-systemctl enable --now power-profiles-daemon.service
-
-# Setup nvidia
-sudo pacman -S --noconfirm nvidia-dkms supergfxctl
-systemctl enable --now supergfxd
-
-# Install battop
-wget https://github.com/svartalf/rust-battop/releases/download/v0.2.4/battop-v0.2.4-x86_64-unknown-linux-gnu -O battop
-sudo mv battop /usr/bin/
-sudo chmod +x /usr/bin/battop
-
-# Setup docker
-sudo pacman -S --noconfirm docker distrobox
-
-sudo usermod -aG docker $USER
-sudo systemctl enable --now docker
-
 # Setup git
 sudo pacman -S --noconfirm git github-cli
 
 if [[ $USER == "karan" ]]; then
-  git config --global user.email "karan@pixelos.net"
+  git config --global user.email "whyredfire@gmail.com"
   git config --global user.name "Karan Parashar"
 fi
 
@@ -75,19 +34,28 @@ git config --global alias.ck 'checkout'
 git config --global commit.verbose true
 git config --global core.editor 'nvim'
 
-# Install patched Nerd Fonts
-mkdir -p ~/.fonts
-wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.0/JetBrainsMono.zip" -O JetBrainsMono.zip
-unzip JetBrainsMono.zip -d ~/.fonts/
-rm JetBrainsMono.zip
-fc-cache -fv
+# Install yay and their packages
+git clone https://aur.archlinux.org/yay.git && cd yay
+makepkg -si
+cd .. && rm -rf yay
 
-# Clone the NvChad repository
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 --quiet
+yay -S --noconfirm \
+    google-chrome \
+    motrix-bin
+
+# Install battop
+wget https://github.com/svartalf/rust-battop/releases/download/v0.2.4/battop-v0.2.4-x86_64-unknown-linux-gnu -O battop
+sudo mv battop /usr/bin/
+sudo chmod +x /usr/bin/battop
+
+# Setup docker
+sudo pacman -S --noconfirm docker
+
+sudo usermod -aG docker $USER
+sudo systemctl enable --now docker
 
 # Configure GNOME shell
-sudo pacman -S --noconfirm gnome-themes-extra
-flatpak install flathub -y com.mattjakeman.ExtensionManager
+sudo pacman -S --noconfirm gnome-themes-extra extension-manager
 
 # gsettings list-recursively org.gnome.desktop.interface
 gsettings set org.gnome.shell disable-user-extensions false
