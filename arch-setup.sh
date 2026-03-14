@@ -3,6 +3,8 @@
 # Install packages with pacman
 sudo pacman -S --noconfirm \
     android-tools \
+    bluez bluez-utils blueman \
+    power-profiles-daemon \
     bat htop fastfetch wget \
     neovim tmux \
     flatpak \
@@ -11,9 +13,9 @@ sudo pacman -S --noconfirm \
     telegram-desktop discord \
     celluloid
 
-# Setup bluetooth
-sudo pacman -S --noconfirm bluez bluez-utils blueman
+# Enable bluetooth and power profiles
 systemctl enable --now bluetooth
+systemctl enable --now power-profiles-daemon
 
 # Setup git
 sudo pacman -S --noconfirm git github-cli
