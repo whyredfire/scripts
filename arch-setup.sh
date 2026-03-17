@@ -4,14 +4,13 @@
 sudo pacman -S --noconfirm \
     android-tools \
     bluez bluez-utils blueman \
-    power-profiles-daemon \
-    bat htop fastfetch wget \
+    cloudflared power-profiles-daemon \
+    bat htop jq fastfetch ripgrep tree wget yq \
     neovim tmux \
-    flatpak \
     gcc npm \
+    helm kubectl kubectx \
     noto-fonts-cjk noto-fonts-extra \
-    telegram-desktop discord \
-    celluloid
+    celluloid discord telegram-desktop discord
 
 # Enable bluetooth and power profiles
 systemctl enable --now bluetooth
@@ -51,7 +50,7 @@ sudo mv battop /usr/bin/
 sudo chmod +x /usr/bin/battop
 
 # Setup docker
-sudo pacman -S --noconfirm docker
+sudo pacman -S --noconfirm dive docker docker-buildx docker-compose
 
 sudo usermod -aG docker $USER
 sudo systemctl enable --now docker
